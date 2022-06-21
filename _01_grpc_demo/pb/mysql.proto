@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package _01_grpc_demo;
+
+option go_package = "./;pb";
+
+message MysqlReq {
+  string sql = 1;
+}
+
+message MysqlRes {
+  uint32 code = 1;
+  string msg = 2;
+  string data = 3;
+}
+
+service MysqlService {
+  rpc SelectRecord(MysqlReq) returns (MysqlRes) {};
+  rpc InsertRecord(stream MysqlReq) returns (MysqlRes) {};
+  rpc DeleteRecord(MysqlReq) returns (stream MysqlRes) {}
+  rpc UpdateRecord(stream MysqlReq) returns (stream MysqlRes) {};
+}
