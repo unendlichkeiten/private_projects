@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package _04_grpc_deadline_and_cancel;
+
+option go_package = "./;pb";
+
+message Req {
+  string say = 1;
+}
+
+message Res {
+  string reply = 1;
+}
+
+service Chat {
+  rpc UnaryHello(Req) returns (Res) {}
+  rpc BiStreamHello(stream Req) returns (stream Res) {}
+}
+
+service Smile {
+  rpc UnarySmile(Req) returns (Res) {}
+}
